@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -n \"collection\\\\|\\\\.add\\\\|\\\\.set\\\\|Reports\\\\|reports\" \"/Users/rubillansukumaharan/Desktop/psm2/codes/flutter app/utm_secure/lib/report_form_page.dart\" 2>/dev/null | head -30)",
+      "Read(//Users/rubillansukumaharan/Desktop/psm2/codes/flutter app/utm_secure/lib/**)"
+    ]
+  }
+}
