@@ -55,8 +55,10 @@ class _LoginPageState extends State<LoginPage> {
         context,
         MaterialPageRoute(builder: (_) => const DashboardPage()),
       );
-    } catch (_) {
-      _msg('Invalid email or password.');
+    } on FirebaseAuthException catch (e) {
+      _msg('Sign-in failed: ${e.message}');
+    } catch (e) {
+      _msg('Unexpected error: $e');
     } finally {
       if (mounted) setState(() => _loading = false);
     }

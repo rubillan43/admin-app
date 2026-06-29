@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:intl/intl.dart';
 
 const _maroon = Color(0xFF800000);
@@ -104,8 +105,15 @@ class _ReportDetailPageState extends State<ReportDetailPage> {
         await matchDoc.reference.delete();
       }
 
-      // Finally delete the report itself
+      // Finally delete the report itself and its storage image
       await db.collection('Reports').doc(docId).delete();
+      try {
+        await FirebaseStorage.instance
+            .ref('report_images/$docId.jpg')
+            .delete();
+      } catch (_) {
+        // Image may not exist — ignore
+      }
 
       if (mounted) Navigator.pop(context);
     } catch (e) {

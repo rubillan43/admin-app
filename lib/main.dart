@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'firebase_options.dart';
 import 'login_page.dart';
+import 'dashboard_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,7 +24,9 @@ class AdminApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF800000)),
         useMaterial3: true,
       ),
-      home: const LoginPage(),
+      home: FirebaseAuth.instance.currentUser != null
+          ? const DashboardPage()
+          : const LoginPage(),
     );
   }
 }
